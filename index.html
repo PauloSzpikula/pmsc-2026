@@ -4,610 +4,759 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova Turma PMSC 2026 | AlfaCon Presencial</title>
+<meta name="description" content="Preparação presencial e ao vivo para a PMSC 2026. Método estruturado, focado na banca e acompanhado até a prova. Entre no grupo oficial.">
 
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    '#08130d',   // near-black verde
+        forest: '#0d2417',   // verde escuro de seção
+        green:  { 600:'#16a34a', 700:'#15803d', 800:'#166534' },
+        gold:   { 400:'#facc15', 500:'#eab308', 600:'#ca8a04' },
+        sand:   '#f7faf6',   // off-white levemente verde
+      },
+      fontFamily: {
+        display: ['Archivo', 'system-ui', 'sans-serif'],
+        sans:    ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+}
+</script>
 
 <style>
-body{font-family:'Plus Jakarta Sans',sans-serif;background:linear-gradient(180deg,#fff,#f8fafc);}
-.hero-glow{position:absolute;width:650px;height:650px;background:#f5d76e;filter:blur(140px);opacity:.18;border-radius:9999px;right:-120px;top:40px;}
-.card{transition:.3s}
-.card:hover{transform:translateY(-6px)}
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f7faf6; color: #0f1d16; }
+  h1,h2,h3,.font-display { font-family: 'Archivo', sans-serif; letter-spacing: -0.02em; }
+
+  /* ---- Signature: faixa chevron (insígnia policial) ---- */
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:.55rem;
+    font-family:'Archivo',sans-serif; font-weight:800;
+    text-transform:uppercase; letter-spacing:.18em; font-size:.72rem;
+    color:#15803d;
+  }
+  .eyebrow::before {
+    content:""; width:26px; height:12px; flex:0 0 auto;
+    background:
+      linear-gradient(135deg,#16a34a 45%,transparent 45%) 0 0/8px 100% repeat-x,
+      transparent;
+    -webkit-mask: linear-gradient(135deg,#000 45%,transparent 45%) 0 0/8px 100% repeat-x;
+            mask: linear-gradient(135deg,#000 45%,transparent 45%) 0 0/8px 100% repeat-x;
+    background:#16a34a;
+  }
+  .eyebrow.on-dark { color:#facc15; }
+  .eyebrow.on-dark::before { background:#facc15; }
+
+  /* ---- Glow ambiente ---- */
+  .glow { position:absolute; border-radius:9999px; filter:blur(130px); pointer-events:none; z-index:0; }
+
+  /* ---- Hover de cards ---- */
+  .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 24px 40px -18px rgba(8,19,13,.28); }
+
+  /* ---- Ícone em "patch" ---- */
+  .patch {
+    width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,#16a34a,#15803d); color:#fff; box-shadow:0 8px 20px -8px rgba(22,163,74,.6);
+  }
+  .patch.gold { background:linear-gradient(135deg,#facc15,#eab308); color:#3b2f00; box-shadow:0 8px 20px -8px rgba(234,179,8,.55); }
+  .patch svg { width:26px; height:26px; }
+
+  /* ---- Botão principal com chevron ---- */
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:#16a34a; color:#fff; font-weight:700; font-family:'Archivo',sans-serif;
+    padding:.95rem 1.8rem; border-radius:14px; transition:transform .2s, box-shadow .2s, background .2s;
+    box-shadow:0 14px 30px -12px rgba(22,163,74,.8);
+  }
+  .btn-primary:hover { background:#15803d; transform:translateY(-2px); box-shadow:0 18px 34px -12px rgba(21,128,61,.85); }
+  .btn-gold {
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:#facc15; color:#1a2e0e; font-weight:800; font-family:'Archivo',sans-serif;
+    padding:.95rem 1.8rem; border-radius:14px; transition:transform .2s, box-shadow .2s, background .2s;
+    box-shadow:0 14px 30px -12px rgba(234,179,8,.7);
+  }
+  .btn-gold:hover { background:#eab308; transform:translateY(-2px); }
+  .btn-ghost {
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:#fff; color:#15803d; font-weight:800; font-family:'Archivo',sans-serif;
+    padding:.95rem 1.8rem; border-radius:14px; transition:transform .2s, box-shadow .2s;
+    box-shadow:0 14px 30px -12px rgba(0,0,0,.25);
+  }
+  .btn-ghost:hover { transform:translateY(-2px) scale(1.02); }
+
+  /* ---- Reveal no scroll ---- */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity:1; transform:none; }
+
+  /* ---- Accordion FAQ ---- */
+  .faq-item button[aria-expanded="true"] .faq-icon { transform:rotate(45deg); }
+  .faq-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+  .faq-body > div { overflow:hidden; }
+  .faq-item button[aria-expanded="true"] + .faq-body { grid-template-rows:1fr; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .reveal { opacity:1; transform:none; transition:none; }
+    .lift, .btn-primary, .btn-gold, .btn-ghost { transition:none; }
+  }
 </style>
 </head>
-<body class="text-slate-800">
 
-<header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50">
-<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
-<div class="font-extrabold text-xl">ALFACON <span class="text-yellow-500">PRESENCIAL</span></div>
-<nav class="hidden lg:flex gap-8 text-sm font-semibold">
-<a href="#problema">O Problema</a>
-<a href="#metodo">Método</a>
-<a href="#funciona">Como Funciona</a>
-<a href="#conteudo">Conteúdo</a>
-<a href="#faq">FAQ</a>
-</nav>
-<a href="#grupo" class="bg-green-600 text-white px-5 py-3 rounded-xl font-semibold">Entrar no Grupo</a>
-</div>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-5 sm:px-8 py-4">
+    <a href="#topo" class="font-display font-extrabold text-xl tracking-tight">ALFACON <span class="text-green-700">PRESENCIAL</span></a>
+    <nav class="hidden lg:flex gap-8 text-sm font-semibold text-slate-700">
+      <a href="#problema" class="hover:text-green-700 transition">O Problema</a>
+      <a href="#metodo" class="hover:text-green-700 transition">Método</a>
+      <a href="#funciona" class="hover:text-green-700 transition">Rotina</a>
+      <a href="#conteudo" class="hover:text-green-700 transition">O que você recebe</a>
+      <a href="#faq" class="hover:text-green-700 transition">FAQ</a>
+    </nav>
+    <a href="#grupo" class="hidden sm:inline-flex btn-primary !py-2.5 !px-5 text-sm">Entrar no grupo</a>
+    <button id="menuBtn" class="lg:hidden p-2 -mr-2" aria-label="Abrir menu" aria-expanded="false">
+      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+  <!-- menu mobile -->
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-black/5 bg-white">
+    <nav class="flex flex-col px-5 py-3 text-sm font-semibold text-slate-700">
+      <a href="#problema" class="py-2.5">O Problema</a>
+      <a href="#metodo" class="py-2.5">Método</a>
+      <a href="#funciona" class="py-2.5">Rotina</a>
+      <a href="#conteudo" class="py-2.5">O que você recebe</a>
+      <a href="#faq" class="py-2.5">FAQ</a>
+      <a href="#grupo" class="mt-2 mb-1 btn-primary justify-center">Entrar no grupo</a>
+    </nav>
+  </div>
 </header>
 
-<section class="relative min-h-screen flex items-center overflow-hidden">
-<div class="hero-glow"></div>
-<div class="max-w-7xl mx-auto px-8 pt-28 grid lg:grid-cols-2 gap-12 items-center">
-<div>
-<div class="inline-flex bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-bold uppercase text-xs">Nova Turma • PMSC 2026</div>
-<h1 class="mt-8 text-5xl lg:text-7xl font-extrabold leading-tight">Sua aprovação <br><span class="text-slate-400">não depende de sorte.</span></h1>
-<h2 class="text-3xl lg:text-5xl font-extrabold mt-5 text-yellow-600">Depende do método.</h2>
-<p class="mt-8 text-xl text-slate-600 leading-9">Enquanto muitos candidatos estudam sem direção, nossos alunos seguem um método estruturado, focado no perfil da banca e acompanhado até a prova.</p>
-<a href="#metodo" class="inline-block mt-10 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold">Conhecer a preparação →</a>
+<!-- ================= HERO ================= -->
+<section id="topo" class="relative overflow-hidden pt-28 lg:pt-36 pb-20">
+  <div class="glow" style="width:560px;height:560px;background:#facc15;opacity:.16;right:-140px;top:20px;"></div>
+  <div class="glow" style="width:480px;height:480px;background:#16a34a;opacity:.12;left:-160px;bottom:-120px;"></div>
 
-<div class="grid grid-cols-2 gap-6 mt-14">
-<div class="bg-white rounded-2xl shadow-lg border p-6">
-<p class="text-4xl font-black">+15</p>
-<p class="font-bold mt-2">anos</p>
-<p class="text-slate-500 text-sm mt-2">preparando candidatos.</p>
-</div>
-<div class="bg-white rounded-2xl shadow-lg border p-6">
-<p class="text-4xl font-black">+75</p>
-<p class="font-bold mt-2">aprovados</p>
-<p class="text-slate-500 text-sm mt-2">na PMPR.</p>
-</div>
-</div>
-</div>
-<div><img src="assets/images/hero.webp" class="w-full"></div>
-</div>
-</section>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 bg-gold-400/20 text-green-800 font-display font-extrabold uppercase tracking-widest text-xs px-4 py-2 rounded-full ring-1 ring-gold-500/30">
+        <span class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span>
+        Nova Turma • PMSC 2026
+      </span>
 
-<section id="problema" class="py-24">
-<div class="max-w-6xl mx-auto px-8">
-<div class="max-w-3xl">
-<span class="text-yellow-600 font-bold uppercase tracking-widest">O Problema</span>
-<h2 class="mt-3 text-4xl lg:text-5xl font-extrabold leading-tight">
-Você não precisa estudar mais.<br>
-<span class="text-slate-400">Precisa estudar da maneira certa.</span>
-</h2>
-<p class="mt-6 text-xl text-slate-600 leading-8">
-A reprovação raramente acontece por falta de esforço. Ela acontece porque muitos candidatos estudam sem método, sem rotina e sem uma estratégia clara.
-</p>
-</div>
+      <h1 class="mt-7 font-display font-black text-5xl lg:text-7xl leading-[0.98] tracking-tight">
+        Sua aprovação<br>
+        <span class="text-slate-400">não depende de sorte.</span>
+      </h1>
+      <p class="mt-5 font-display font-extrabold text-3xl lg:text-5xl text-green-700">Depende do método.</p>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-
-<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-<div class="text-4xl">⏰</div>
-<h3 class="font-bold text-xl mt-5">Estuda quando sobra tempo</h3>
-<p class="text-slate-500 mt-3">Sem rotina, cada semana recomeça do zero.</p>
-</div>
-
-<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-<div class="text-4xl">📚</div>
-<h3 class="font-bold text-xl mt-5">Acumula materiais</h3>
-<p class="text-slate-500 mt-3">PDFs, vídeos e anotações sem um plano claro.</p>
-</div>
-
-<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-<div class="text-4xl">🎯</div>
-<h3 class="font-bold text-xl mt-5">Não conhece a banca</h3>
-<p class="text-slate-500 mt-3">Estuda muito, mas nem sempre o que realmente importa.</p>
-</div>
-
-<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-<div class="text-4xl">📉</div>
-<h3 class="font-bold text-xl mt-5">Perde a constância</h3>
-<p class="text-slate-500 mt-3">Sem método, a motivação desaparece ao longo da preparação.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<section class="bg-slate-900 py-20">
-<div class="max-w-5xl mx-auto text-center px-8">
-<h2 class="text-4xl font-extrabold text-white">
-Foi justamente para resolver esses problemas que criamos o Método AlfaCon.
-</h2>
-<p class="text-slate-300 text-xl mt-6">
-Uma preparação guiada, organizada e focada em levar você até a prova com estratégia.
-</p>
-<a href="#metodo" class="inline-block mt-10 bg-yellow-500 hover:bg-yellow-400 text-slate-900 px-8 py-4 rounded-xl font-bold">
-Conhecer o Método ↓
-</a>
-</div>
-</section>
-
-
-<!-- TRECHO PARA SUBSTITUIR A SEÇÃO #metodo NO index-v2.html -->
-<section id="metodo" class="py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-8">
-
-    <div class="max-w-3xl">
-      <span class="text-yellow-600 font-bold uppercase tracking-widest">Método AlfaCon</span>
-
-      <h2 class="mt-3 text-4xl lg:text-5xl font-extrabold leading-tight">
-        Não entregamos apenas aulas.
-        <span class="text-slate-400">Entregamos direção.</span>
-      </h2>
-
-      <p class="mt-8 text-xl text-slate-600 leading-9">
-        Enquanto muitos candidatos estudam sem planejamento, nossa metodologia
-        organiza toda a sua jornada até a prova. Você sempre saberá o que estudar,
-        quando estudar e como evoluir.
-      </p>
-    </div>
-
-    <div class="grid lg:grid-cols-4 gap-8 mt-20">
-
-      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
-        <div class="text-5xl">📄</div>
-        <h3 class="mt-6 text-2xl font-bold">Antes da aula</h3>
-        <ul class="mt-6 space-y-3 text-slate-600">
-          <li>• PDF disponibilizado antecipadamente</li>
-          <li>• Leitura orientada</li>
-          <li>• Chegue preparado para a aula</li>
-        </ul>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
-        <div class="text-5xl">🎥</div>
-        <h3 class="mt-6 text-2xl font-bold">Durante a aula</h3>
-        <ul class="mt-6 space-y-3 text-slate-600">
-          <li>• Revisão objetiva da teoria</li>
-          <li>• Questões no padrão da banca</li>
-          <li>• Dúvidas ao vivo</li>
-        </ul>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
-        <div class="text-5xl">📝</div>
-        <h3 class="mt-6 text-2xl font-bold">Depois da aula</h3>
-        <ul class="mt-6 space-y-3 text-slate-600">
-          <li>• Lista segmentada</li>
-          <li>• Atualização dos resumos</li>
-          <li>• Revisão dirigida</li>
-        </ul>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
-        <div class="text-5xl">📈</div>
-        <h3 class="mt-6 text-2xl font-bold">Sua evolução</h3>
-        <ul class="mt-6 space-y-3 text-slate-600">
-          <li>• Mapas de calor</li>
-          <li>• Simulados</li>
-          <li>• Grupo com suporte</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="mt-20 bg-slate-900 rounded-3xl p-12 text-white">
-
-      <h3 class="text-3xl font-bold">
-        Você nunca ficará em dúvida sobre o que estudar.
-      </h3>
-
-      <p class="mt-6 text-slate-300 text-lg leading-8">
-        Nossa preparação já entrega uma sequência lógica de estudos.
-        Você acompanha a rotina da turma enquanto nós cuidamos do planejamento.
+      <p class="mt-7 text-lg lg:text-xl text-slate-600 leading-relaxed max-w-xl">
+        Enquanto muitos candidatos estudam sem direção, nossos alunos seguem um método estruturado, focado no perfil da banca e acompanhado até a prova.
       </p>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-
-        <div class="bg-slate-800 rounded-xl p-5">✓ Aulas ao vivo</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ Aulas gravadas</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ PDFs antecipados</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ Questões por assunto</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ Mapas de calor</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ Grupo exclusivo</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ Correção de redação</div>
-        <div class="bg-slate-800 rounded-xl p-5">✓ Simulados</div>
-
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#metodo" class="btn-primary">Conhecer a preparação
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+        <a href="#grupo" class="btn-ghost !shadow-none ring-1 ring-slate-200">Entrar no grupo</a>
       </div>
 
+      <!-- stats -->
+      <div class="grid grid-cols-3 gap-3 sm:gap-5 mt-12 max-w-lg">
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+          <p class="font-display font-black text-3xl sm:text-4xl text-green-700"><span class="count" data-target="15">0</span>+</p>
+          <p class="font-bold text-sm mt-1">anos</p>
+          <p class="text-slate-500 text-xs mt-1">preparando candidatos</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+          <p class="font-display font-black text-3xl sm:text-4xl text-green-700"><span class="count" data-target="75">0</span>+</p>
+          <p class="font-bold text-sm mt-1">aprovados</p>
+          <p class="text-slate-500 text-xs mt-1">em concursos policiais</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+          <p class="font-display font-black text-3xl sm:text-4xl text-green-700">1</p>
+          <p class="font-bold text-sm mt-1">método</p>
+          <p class="text-slate-500 text-xs mt-1">do início à prova</p>
+        </div>
+      </div>
     </div>
 
+    <div class="reveal">
+      <div class="relative">
+        <div class="absolute -inset-3 bg-gradient-to-br from-green-600/20 to-gold-400/20 rounded-[2rem] blur-xl"></div>
+        <!-- Mantenha o caminho da imagem que você já usa -->
+        <img src="./Nova Turma PMSC 2026 _ AlfaCon Presencial_files/hero.webp" alt="Preparação presencial AlfaCon para a PMSC 2026" class="relative w-full rounded-[1.75rem] shadow-2xl">
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- SUBSTITUA A SEÇÃO id="funciona" POR ESTA -->
+<!-- ================= PROBLEMA ================= -->
+<section id="problema" class="py-20 lg:py-28">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <span class="eyebrow">O problema</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">
+        Você não precisa estudar mais.<br>
+        <span class="text-slate-400">Precisa estudar da maneira certa.</span>
+      </h2>
+      <p class="mt-6 text-lg lg:text-xl text-slate-600 leading-relaxed">
+        A reprovação raramente acontece por falta de esforço. Ela acontece porque muitos candidatos estudam sem método, sem rotina e sem uma estratégia clara.
+      </p>
+    </div>
 
-<section id="funciona" class="py-24 bg-slate-50">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
+      <!-- card -->
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7">
+        <div class="patch gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mt-5">Estuda quando sobra tempo</h3>
+        <p class="text-slate-500 mt-2 text-sm leading-relaxed">Sem rotina, cada semana recomeça do zero.</p>
+      </div>
 
-<div class="max-w-7xl mx-auto px-8">
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7">
+        <div class="patch gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 0-2 2V5Z"/><path d="M20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 1 2 2V5Z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mt-5">Acumula materiais</h3>
+        <p class="text-slate-500 mt-2 text-sm leading-relaxed">PDFs, vídeos e anotações sem um plano claro.</p>
+      </div>
 
-<div class="max-w-3xl">
-<span class="text-yellow-600 font-bold uppercase tracking-widest">Como funciona</span>
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7">
+        <div class="patch gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mt-5">Não conhece a banca</h3>
+        <p class="text-slate-500 mt-2 text-sm leading-relaxed">Estuda muito, mas nem sempre o que realmente importa.</p>
+      </div>
 
-<h2 class="mt-3 text-4xl lg:text-5xl font-extrabold">
-Uma rotina pensada para manter você evoluindo até a prova.
-</h2>
-
-<p class="mt-6 text-xl text-slate-600 leading-9">
-A preparação foi estruturada para que você não precise decidir sozinho o que estudar.
-Basta acompanhar a rotina da turma e executar o plano.
-</p>
-</div>
-
-<div class="mt-20 grid lg:grid-cols-7 gap-6">
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Segunda</h3>
-<p class="mt-4 text-slate-600">🎥 2 aulas ao vivo<br>2 disciplinas diferentes</p>
-</div>
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Terça</h3>
-<p class="mt-4 text-slate-600">📝 Lista de exercícios<br>📒 Organização dos resumos</p>
-</div>
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Quarta</h3>
-<p class="mt-4 text-slate-600">🎥 2 aulas ao vivo<br>Novos assuntos</p>
-</div>
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Quinta</h3>
-<p class="mt-4 text-slate-600">📝 Exercícios<br>📊 Revisão e mapa de calor</p>
-</div>
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Sexta</h3>
-<p class="mt-4 text-slate-600">🎥 2 aulas ao vivo<br>Fechamento da semana</p>
-</div>
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Sábado</h3>
-<p class="mt-4 text-slate-600">📚 Consolidação<br>Revisão dos pontos fracos</p>
-</div>
-
-<div class="bg-white rounded-2xl p-6 shadow border">
-<h3 class="font-bold text-lg">Domingo</h3>
-<p class="mt-4 text-slate-600">☕ Descanso ou recuperação de aulas gravadas.</p>
-</div>
-
-</div>
-
-<div class="mt-16 bg-green-600 text-white rounded-3xl p-10">
-<h3 class="text-3xl font-bold">
-O cronograma da turma também é o seu cronograma de estudos.
-</h3>
-
-<p class="mt-5 text-lg leading-8 text-green-100">
-Você não perde tempo escolhendo disciplinas ou montando planejamentos.
-Nós organizamos a sequência de estudos para que você concentre sua energia apenas em aprender e evoluir.
-</p>
-</div>
-
-</div>
-
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7">
+        <div class="patch gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l6 6 4-4 7 7"/><path d="M21 16v-5h-5"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-lg mt-5">Perde a constância</h3>
+        <p class="text-slate-500 mt-2 text-sm leading-relaxed">Sem método, a motivação desaparece ao longo da preparação.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<!-- SUBSTITUA A SEÇÃO id="conteudo" POR ESTA -->
-
-<section id="conteudo" class="py-24 bg-white">
-
-<div class="max-w-7xl mx-auto px-8">
-
-<div class="max-w-3xl">
-<span class="text-yellow-600 font-bold uppercase tracking-widest">
-O que você recebe
-</span>
-
-<h2 class="mt-3 text-4xl lg:text-5xl font-extrabold">
-Muito mais do que aulas.
-</h2>
-
-<p class="mt-6 text-xl text-slate-600 leading-9">
-Toda a preparação foi pensada para que você tenha um caminho claro até a prova,
-sem precisar montar seu próprio planejamento.
-</p>
-</div>
-
-<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">📄</div>
-<h3 class="mt-5 text-xl font-bold">Material antecipado</h3>
-<p class="mt-3 text-slate-600">Receba o PDF antes da aula e chegue preparado.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">🎥</div>
-<h3 class="mt-5 text-xl font-bold">Aulas ao vivo</h3>
-<p class="mt-3 text-slate-600">Interaja com o professor e tire dúvidas em tempo real.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">▶️</div>
-<h3 class="mt-5 text-xl font-bold">Aulas gravadas</h3>
-<p class="mt-3 text-slate-600">Perdeu uma aula? Assista quando precisar.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">📝</div>
-<h3 class="mt-5 text-xl font-bold">Questões por assunto</h3>
-<p class="mt-3 text-slate-600">Pratique exatamente o conteúdo estudado em cada encontro.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">📊</div>
-<h3 class="mt-5 text-xl font-bold">Mapas de calor</h3>
-<p class="mt-3 text-slate-600">Priorize os assuntos mais relevantes da banca.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">👥</div>
-<h3 class="mt-5 text-xl font-bold">Grupo exclusivo</h3>
-<p class="mt-3 text-slate-600">Conte com suporte e comunicação durante toda a preparação.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">✍️</div>
-<h3 class="mt-5 text-xl font-bold">Correção de redação</h3>
-<p class="mt-3 text-slate-600">Receba feedback para evoluir continuamente.</p>
-</div>
-
-<div class="rounded-2xl border border-slate-200 p-8 hover:shadow-xl transition">
-<div class="text-5xl">📈</div>
-<h3 class="mt-5 text-xl font-bold">Simulados</h3>
-<p class="mt-3 text-slate-600">Avalie sua evolução e ajuste sua preparação.</p>
-</div>
-
-</div>
-
-<div class="mt-16 rounded-3xl bg-yellow-50 border border-yellow-200 p-10">
-<h3 class="text-3xl font-bold text-slate-900">
-Seu foco deve ser aprender. O restante é responsabilidade da metodologia.
-</h3>
-
-<p class="mt-5 text-lg text-slate-700 leading-8">
-Enquanto você acompanha as aulas e resolve os exercícios, nós cuidamos da organização,
-sequência das disciplinas, direcionamento e estratégia da preparação.
-</p>
-</div>
-
-</div>
-
-</section>
-  
-
-<!-- SUBSTITUA A PRÓXIMA SEÇÃO PELO BLOCO "MATÉRIAS DA PREPARAÇÃO" -->
-
-<section id="materias" class="py-24 bg-slate-50">
-
-<div class="max-w-7xl mx-auto px-8">
-
-<div class="max-w-3xl">
-<span class="text-yellow-600 font-bold uppercase tracking-widest">
-Matérias da preparação
-</span>
-
-<h2 class="mt-3 text-4xl lg:text-5xl font-extrabold">
-Preparação completa para o perfil do concurso.
-</h2>
-
-<p class="mt-6 text-xl text-slate-600 leading-9">
-O cronograma é organizado de forma progressiva para que você avance com segurança,
-sem precisar decidir sozinho o que estudar primeiro.
-</p>
-</div>
-
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-
-<div class="bg-white rounded-2xl border p-8">
-<h3 class="font-bold text-2xl">📖 Língua Portuguesa</h3>
-<p class="mt-3 text-slate-600">Gramática, interpretação de textos e questões no perfil da banca.</p>
-</div>
-
-<div class="bg-white rounded-2xl border p-8">
-<h3 class="font-bold text-2xl">💻 Informática</h3>
-<p class="mt-3 text-slate-600">Conteúdo atualizado com foco na cobrança do concurso.</p>
-</div>
-
-<div class="bg-white rounded-2xl border p-8">
-<h3 class="font-bold text-2xl">🧠 Raciocínio Lógico</h3>
-<p class="mt-3 text-slate-600">Resolução prática dos principais modelos de questões.</p>
-</div>
-
-<div class="bg-white rounded-2xl border p-8">
-<h3 class="font-bold text-2xl">⚖ Direito Constitucional</h3>
-<p class="mt-3 text-slate-600">Os temas mais cobrados explicados de forma objetiva.</p>
-</div>
-
-<div class="bg-white rounded-2xl border p-8">
-<h3 class="font-bold text-2xl">👮 Legislação Institucional</h3>
-<p class="mt-3 text-slate-600">Estudo direcionado para a realidade da PMSC.</p>
-</div>
-
-<div class="bg-white rounded-2xl border p-8">
-<h3 class="font-bold text-2xl">📚 Demais disciplinas</h3>
-<p class="mt-3 text-slate-600">Direito Penal, Processo Penal, Redação e demais conteúdos previstos.</p>
-</div>
-
-</div>
-
-<div class="mt-16 rounded-3xl bg-slate-900 text-white p-10">
-<h3 class="text-3xl font-bold">
-As disciplinas são trabalhadas conforme o avanço da turma.
-</h3>
-
-<p class="mt-5 text-slate-300 text-lg leading-8">
-O cronograma é atualizado continuamente para manter uma evolução equilibrada,
-respeitando a disponibilidade dos professores e a estratégia da preparação.
-</p>
-</div>
-
-</div>
-
+<!-- ================= FAIXA ESCURA (transição) ================= -->
+<section class="relative overflow-hidden bg-ink text-white py-20">
+  <div class="glow" style="width:520px;height:520px;background:#16a34a;opacity:.22;right:-120px;top:-120px;"></div>
+  <div class="max-w-4xl mx-auto text-center px-5 sm:px-8 relative z-10 reveal">
+    <h2 class="font-display font-black text-3xl lg:text-5xl leading-tight">
+      Foi para resolver esses problemas que criamos o <span class="text-gold-400">Método AlfaCon</span>.
+    </h2>
+    <p class="text-slate-300 text-lg lg:text-xl mt-6 leading-relaxed">
+      Uma preparação guiada, organizada e focada em levar você até a prova com estratégia.
+    </p>
+    <a href="#metodo" class="btn-gold mt-9">Conhecer o método
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg>
+    </a>
+  </div>
 </section>
 
-  
+<!-- ================= MÉTODO ================= -->
+<section id="metodo" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <span class="eyebrow">Método AlfaCon</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">
+        Não entregamos apenas aulas. <span class="text-slate-400">Entregamos direção.</span>
+      </h2>
+      <p class="mt-6 text-lg lg:text-xl text-slate-600 leading-relaxed">
+        Enquanto muitos candidatos estudam sem planejamento, nossa metodologia organiza toda a sua jornada até a prova. Você sempre saberá o que estudar, quando estudar e como evoluir.
+      </p>
+    </div>
 
-<!-- SUBSTITUA A SEÇÃO id="faq" POR ESTA -->
+    <!-- 4 etapas numeradas (sequência real) -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
+      <div class="reveal lift relative rounded-2xl border border-slate-200 p-7 bg-sand">
+        <span class="absolute top-6 right-6 font-display font-black text-5xl text-slate-200 leading-none">01</span>
+        <div class="patch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl mt-5">Antes da aula</h3>
+        <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> PDF disponibilizado antecipadamente</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Leitura orientada</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Chegue preparado para a aula</li>
+        </ul>
+      </div>
 
-<section id="faq" class="py-24 bg-slate-100">
+      <div class="reveal lift relative rounded-2xl border border-slate-200 p-7 bg-sand">
+        <span class="absolute top-6 right-6 font-display font-black text-5xl text-slate-200 leading-none">02</span>
+        <div class="patch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl mt-5">Durante a aula</h3>
+        <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Revisão objetiva da teoria</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Questões no padrão da banca</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Dúvidas ao vivo</li>
+        </ul>
+      </div>
 
-<div class="max-w-5xl mx-auto px-8">
+      <div class="reveal lift relative rounded-2xl border border-slate-200 p-7 bg-sand">
+        <span class="absolute top-6 right-6 font-display font-black text-5xl text-slate-200 leading-none">03</span>
+        <div class="patch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl mt-5">Depois da aula</h3>
+        <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Lista segmentada</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Atualização dos resumos</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Revisão dirigida</li>
+        </ul>
+      </div>
 
-<div class="text-center max-w-3xl mx-auto">
-<span class="text-yellow-600 font-bold uppercase tracking-widest">
-Perguntas Frequentes
-</span>
+      <div class="reveal lift relative rounded-2xl border border-slate-200 p-7 bg-sand">
+        <span class="absolute top-6 right-6 font-display font-black text-5xl text-slate-200 leading-none">04</span>
+        <div class="patch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-xl mt-5">Sua evolução</h3>
+        <ul class="mt-4 space-y-2 text-slate-600 text-sm">
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Mapas de calor</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Simulados</li>
+          <li class="flex gap-2"><span class="text-green-600 font-bold">›</span> Grupo com suporte</li>
+        </ul>
+      </div>
+    </div>
 
-<h2 class="mt-3 text-4xl lg:text-5xl font-extrabold">
-Antes de entrar na turma, estas são as dúvidas mais comuns.
-</h2>
-
-<p class="mt-6 text-xl text-slate-600">
-Queremos que você saiba exatamente como funciona a preparação.
-</p>
-</div>
-
-<div class="mt-16 space-y-5">
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">As aulas ficam gravadas?</h3>
-<p class="mt-3 text-slate-600">Sim. Todas as aulas ficam disponíveis para acesso posterior. Mesmo assim, recomendamos acompanhar ao vivo para criar uma rotina de estudos e aproveitar as dúvidas em tempo real.</p>
-</div>
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">Até quando vai a preparação?</h3>
-<p class="mt-3 text-slate-600">A turma acompanha o candidato até a prova. Como a data oficial ainda depende do edital, a preparação funciona por mensalidade.</p>
-</div>
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">Por que a cobrança é mensal?</h3>
-<p class="mt-3 text-slate-600">Porque nosso trabalho acompanha a evolução do concurso. Conforme o cronograma avança, ajustamos conteúdos, cronograma e estratégias até a realização da prova.</p>
-</div>
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">E se eu perder uma aula?</h3>
-<p class="mt-3 text-slate-600">Você poderá assistir à gravação e acompanhar normalmente o cronograma da turma.</p>
-</div>
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">Existe suporte para dúvidas?</h3>
-<p class="mt-3 text-slate-600">Sim. A turma possui um grupo exclusivo no WhatsApp acompanhado por um mediador, além do espaço para dúvidas durante as aulas ao vivo.</p>
-</div>
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">Haverá simulados?</h3>
-<p class="mt-3 text-slate-600">Sim. Os simulados serão aplicados conforme a evolução da turma, ajudando a medir o desempenho e ajustar a preparação.</p>
-</div>
-
-<div class="bg-white rounded-2xl p-8 border">
-<h3 class="font-bold text-xl">Preciso esperar o edital?</h3>
-<p class="mt-3 text-slate-600">Não. A preparação foi criada justamente para quem deseja chegar ao pós-edital já com uma base sólida e uma rotina consolidada.</p>
-</div>
-
-</div>
-
-<div class="mt-16 rounded-3xl bg-green-700 text-white p-10 text-center">
-
-<h3 class="text-3xl font-bold">
-Se essas respostas fazem sentido para você, provavelmente esta preparação é o próximo passo da sua jornada.
-</h3>
-
-<a href="#grupo" class="inline-block mt-8 bg-white text-green-700 px-8 py-4 rounded-xl font-bold">
-Quero entrar no Grupo Oficial →
-</a>
-
-</div>
-
-</div>
-
+    <!-- caixa destaque escura -->
+    <div class="reveal relative overflow-hidden mt-16 bg-ink rounded-3xl p-8 lg:p-12 text-white">
+      <div class="glow" style="width:360px;height:360px;background:#16a34a;opacity:.2;right:-80px;bottom:-100px;"></div>
+      <div class="relative z-10">
+        <h3 class="font-display font-bold text-2xl lg:text-3xl">Você nunca ficará em dúvida sobre o que estudar.</h3>
+        <p class="mt-5 text-slate-300 text-lg leading-relaxed max-w-3xl">
+          Nossa preparação já entrega uma sequência lógica de estudos. Você acompanha a rotina da turma enquanto nós cuidamos do planejamento.
+        </p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-9">
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Aulas ao vivo</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Aulas gravadas</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> PDFs antecipados</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Questões por assunto</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Mapas de calor</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Grupo exclusivo</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Correção de redação</div>
+          <div class="flex items-center gap-2 bg-white/5 ring-1 ring-white/10 rounded-xl px-4 py-3 text-sm"><span class="text-gold-400">✓</span> Simulados</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- SUBSTITUA A SEÇÃO id="grupo" POR ESTA -->
+<!-- ================= COMO FUNCIONA (rotina) ================= -->
+<section id="funciona" class="py-20 lg:py-28 bg-sand">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">
+        Uma rotina pensada para manter você evoluindo até a prova.
+      </h2>
+      <p class="mt-6 text-lg lg:text-xl text-slate-600 leading-relaxed">
+        A preparação foi estruturada para que você não precise decidir sozinho o que estudar. Basta acompanhar a rotina da turma e executar o plano.
+      </p>
+    </div>
 
-<section id="grupo" class="py-28 bg-slate-900 text-white">
+    <!-- semana: grid responsivo limpo -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 mt-14">
+      <div class="reveal lift bg-white rounded-2xl p-5 border border-slate-200">
+        <h3 class="font-display font-bold text-green-700">Segunda</h3>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">2 aulas ao vivo, em 2 disciplinas diferentes.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl p-5 border border-slate-200">
+        <h3 class="font-display font-bold text-green-700">Terça</h3>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">Lista de exercícios e organização dos resumos.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl p-5 border border-slate-200">
+        <h3 class="font-display font-bold text-green-700">Quarta</h3>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">2 aulas ao vivo com novos assuntos.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl p-5 border border-slate-200">
+        <h3 class="font-display font-bold text-green-700">Quinta</h3>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">Exercícios, revisão e mapa de calor.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl p-5 border border-slate-200">
+        <h3 class="font-display font-bold text-green-700">Sexta</h3>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">2 aulas ao vivo e fechamento da semana.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl p-5 border border-slate-200">
+        <h3 class="font-display font-bold text-green-700">Sábado</h3>
+        <p class="mt-3 text-slate-600 text-sm leading-relaxed">Consolidação e revisão dos pontos fracos.</p>
+      </div>
+      <div class="reveal lift bg-green-700 text-white rounded-2xl p-5 border border-green-700 col-span-2 md:col-span-1">
+        <h3 class="font-display font-bold text-gold-400">Domingo</h3>
+        <p class="mt-3 text-green-50 text-sm leading-relaxed">Descanso ou recuperação das aulas gravadas.</p>
+      </div>
+    </div>
 
-<div class="max-w-6xl mx-auto px-8">
-
-<div class="text-center max-w-3xl mx-auto">
-
-<span class="text-yellow-400 font-bold uppercase tracking-widest">
-Último passo
-</span>
-
-<h2 class="mt-4 text-5xl font-extrabold leading-tight">
-Agora a decisão é sua.
-</h2>
-
-<p class="mt-8 text-xl text-slate-300 leading-9">
-Se você realmente pretende disputar uma vaga na PMSC, entre no grupo oficial e conheça todos os detalhes da preparação.
-</p>
-
-</div>
-
-<div class="grid lg:grid-cols-2 gap-10 mt-20">
-
-<div class="bg-slate-800 rounded-3xl p-10">
-
-<h3 class="text-3xl font-bold">
-Dentro do grupo você terá acesso a:
-</h3>
-
-<ul class="mt-8 space-y-5 text-lg text-slate-300">
-
-<li>✅ Apresentação completa da metodologia.</li>
-
-<li>✅ Explicação detalhada de como funciona a preparação.</li>
-
-<li>✅ Informações sobre cronograma e início da turma.</li>
-
-<li>✅ Convite para o webinar exclusivo.</li>
-
-<li>✅ Condições especiais para quem estiver no grupo.</li>
-
-<li>✅ Avisos importantes sobre a formação da turma.</li>
-
-</ul>
-
-</div>
-
-<div class="bg-gradient-to-br from-green-600 to-green-700 rounded-3xl p-10 flex flex-col justify-center">
-
-<h3 class="text-4xl font-extrabold">
-O grupo é destinado apenas a candidatos comprometidos com a preparação.
-</h3>
-
-<p class="mt-6 text-green-100 text-lg leading-8">
-Nosso objetivo é reunir pessoas que realmente pretendem investir na própria aprovação e acompanhar uma preparação estruturada até a prova.
-</p>
-
-<a href="https://chat.whatsapp.com/SEU_LINK_AQUI"
-target="_blank"
-class="mt-10 inline-block bg-white text-green-700 text-center px-8 py-5 rounded-2xl text-xl font-bold hover:scale-105 transition">
-
-Entrar no Grupo Oficial →
-
-</a>
-
-<p class="mt-6 text-green-100 text-sm">
-Substitua este link pelo convite oficial do WhatsApp.
-</p>
-
-</div>
-
-</div>
-
-<div class="mt-20 border-t border-slate-700 pt-10 text-center text-slate-400">
-
-<p>
-© AlfaCon Presencial • Preparação para Concursos Policiais
-</p>
-
-</div>
-
-</div>
-
+    <div class="reveal relative overflow-hidden mt-14 bg-gradient-to-br from-green-600 to-green-800 text-white rounded-3xl p-8 lg:p-12">
+      <h3 class="font-display font-bold text-2xl lg:text-3xl">O cronograma da turma também é o seu cronograma de estudos.</h3>
+      <p class="mt-5 text-green-50 text-lg leading-relaxed max-w-3xl">
+        Você não perde tempo escolhendo disciplinas ou montando planejamentos. Nós organizamos a sequência de estudos para que você concentre sua energia apenas em aprender e evoluir.
+      </p>
+    </div>
+  </div>
 </section>
-<h2 class="text-5xl font-extrabold">Pronto para conhecer a turma?</h2>
-<a class="inline-block mt-8 bg-white text-green-700 px-8 py-4 rounded-xl font-bold" href="#">Entrar no Grupo</a>
+
+<!-- ================= CONTEÚDO (o que recebe) ================= -->
+<section id="conteudo" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <span class="eyebrow">O que você recebe</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">Muito mais do que aulas.</h2>
+      <p class="mt-6 text-lg lg:text-xl text-slate-600 leading-relaxed">
+        Toda a preparação foi pensada para que você tenha um caminho claro até a prova, sem precisar montar seu próprio planejamento.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Material antecipado</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Receba o PDF antes da aula e chegue preparado.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3z"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Aulas ao vivo</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Interaja com o professor e tire dúvidas em tempo real.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m10 9 5 3-5 3z"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Aulas gravadas</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Perdeu uma aula? Assista quando precisar.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Questões por assunto</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Pratique exatamente o conteúdo de cada encontro.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8"/><rect x="12" y="6" width="3" height="12"/><rect x="17" y="13" width="3" height="5"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Mapas de calor</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Priorize os assuntos mais relevantes da banca.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Grupo exclusivo</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Suporte e comunicação durante toda a preparação.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Correção de redação</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Receba feedback para evoluir continuamente.</p>
+      </div>
+      <div class="reveal lift rounded-2xl border border-slate-200 p-7">
+        <div class="patch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg></div>
+        <h3 class="font-display font-bold text-lg mt-5">Simulados</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Avalie sua evolução e ajuste sua preparação.</p>
+      </div>
+    </div>
+
+    <div class="reveal mt-14 rounded-3xl bg-gold-400/15 ring-1 ring-gold-500/30 p-8 lg:p-10">
+      <h3 class="font-display font-bold text-2xl lg:text-3xl text-slate-900">Seu foco deve ser aprender. O restante é responsabilidade da metodologia.</h3>
+      <p class="mt-4 text-lg text-slate-700 leading-relaxed max-w-4xl">
+        Enquanto você acompanha as aulas e resolve os exercícios, nós cuidamos da organização, sequência das disciplinas, direcionamento e estratégia da preparação.
+      </p>
+    </div>
+  </div>
 </section>
+
+<!-- ================= MATÉRIAS ================= -->
+<section id="materias" class="py-20 lg:py-28 bg-sand">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <span class="eyebrow">Matérias da preparação</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">Preparação completa para o perfil do concurso.</h2>
+      <p class="mt-6 text-lg lg:text-xl text-slate-600 leading-relaxed">
+        O cronograma é organizado de forma progressiva para que você avance com segurança, sem precisar decidir sozinho o que estudar primeiro.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7 border-l-4 border-l-green-600">
+        <h3 class="font-display font-bold text-xl">Língua Portuguesa</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Gramática, interpretação de textos e questões no perfil da banca.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7 border-l-4 border-l-green-600">
+        <h3 class="font-display font-bold text-xl">Informática</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Conteúdo atualizado com foco na cobrança do concurso.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7 border-l-4 border-l-green-600">
+        <h3 class="font-display font-bold text-xl">Raciocínio Lógico</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Resolução prática dos principais modelos de questões.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7 border-l-4 border-l-green-600">
+        <h3 class="font-display font-bold text-xl">Direito Constitucional</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Os temas mais cobrados explicados de forma objetiva.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7 border-l-4 border-l-green-600">
+        <h3 class="font-display font-bold text-xl">Legislação Institucional</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Estudo direcionado para a realidade da PMSC.</p>
+      </div>
+      <div class="reveal lift bg-white rounded-2xl border border-slate-200 p-7 border-l-4 border-l-green-600">
+        <h3 class="font-display font-bold text-xl">Demais disciplinas</h3>
+        <p class="mt-2 text-slate-600 text-sm leading-relaxed">Direito Penal, Processo Penal, Redação e demais conteúdos previstos.</p>
+      </div>
+    </div>
+
+    <div class="reveal relative overflow-hidden mt-14 rounded-3xl bg-ink text-white p-8 lg:p-12">
+      <div class="glow" style="width:340px;height:340px;background:#16a34a;opacity:.18;right:-80px;top:-100px;"></div>
+      <div class="relative z-10">
+        <h3 class="font-display font-bold text-2xl lg:text-3xl">As disciplinas são trabalhadas conforme o avanço da turma.</h3>
+        <p class="mt-5 text-slate-300 text-lg leading-relaxed max-w-3xl">
+          O cronograma é atualizado continuamente para manter uma evolução equilibrada, respeitando a disponibilidade dos professores e a estratégia da preparação.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPOIMENTOS (preencher com prova social real) ================= -->
+<!--
+  ⚠️ PAULO: substitua os 3 depoimentos abaixo por prints/citações REAIS de aprovados.
+  Prova social genuína é o que mais converte. Se ainda não tiver, é melhor remover a seção
+  inteira do que usar depoimento fictício. Troque [Nome], [resultado] e a foto.
+-->
+<section id="depoimentos" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <span class="eyebrow">Quem já passou por aqui</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">Histórias de quem seguiu o método.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-14">
+      <figure class="reveal lift bg-sand rounded-2xl border border-slate-200 p-7">
+        <div class="flex gap-1 text-gold-500">★★★★★</div>
+        <blockquote class="mt-4 text-slate-700 leading-relaxed">“[Depoimento real do aluno aqui — o que mudou na rotina e no resultado.]”</blockquote>
+        <figcaption class="mt-5 flex items-center gap-3">
+          <span class="w-11 h-11 rounded-full bg-green-600/15 text-green-700 font-display font-bold flex items-center justify-center">AA</span>
+          <span><span class="block font-bold text-sm">[Nome do aluno]</span><span class="block text-slate-500 text-xs">[Aprovado — concurso/ano]</span></span>
+        </figcaption>
+      </figure>
+      <figure class="reveal lift bg-sand rounded-2xl border border-slate-200 p-7">
+        <div class="flex gap-1 text-gold-500">★★★★★</div>
+        <blockquote class="mt-4 text-slate-700 leading-relaxed">“[Depoimento real do aluno aqui.]”</blockquote>
+        <figcaption class="mt-5 flex items-center gap-3">
+          <span class="w-11 h-11 rounded-full bg-green-600/15 text-green-700 font-display font-bold flex items-center justify-center">BB</span>
+          <span><span class="block font-bold text-sm">[Nome do aluno]</span><span class="block text-slate-500 text-xs">[Aprovado — concurso/ano]</span></span>
+        </figcaption>
+      </figure>
+      <figure class="reveal lift bg-sand rounded-2xl border border-slate-200 p-7">
+        <div class="flex gap-1 text-gold-500">★★★★★</div>
+        <blockquote class="mt-4 text-slate-700 leading-relaxed">“[Depoimento real do aluno aqui.]”</blockquote>
+        <figcaption class="mt-5 flex items-center gap-3">
+          <span class="w-11 h-11 rounded-full bg-green-600/15 text-green-700 font-display font-bold flex items-center justify-center">CC</span>
+          <span><span class="block font-bold text-sm">[Nome do aluno]</span><span class="block text-slate-500 text-xs">[Aprovado — concurso/ano]</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ (accordion) ================= -->
+<section id="faq" class="py-20 lg:py-28 bg-sand">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8">
+    <div class="text-center reveal">
+      <span class="eyebrow justify-center">Perguntas frequentes</span>
+      <h2 class="mt-4 font-display font-black text-4xl lg:text-5xl leading-tight">As dúvidas mais comuns antes de entrar.</h2>
+      <p class="mt-5 text-lg text-slate-600">Queremos que você saiba exatamente como funciona a preparação.</p>
+    </div>
+
+    <div class="mt-12 space-y-3" id="faqList">
+      <!-- item -->
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">As aulas ficam gravadas?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">Sim. Todas as aulas ficam disponíveis para acesso posterior. Mesmo assim, recomendamos acompanhar ao vivo para criar uma rotina de estudos e aproveitar as dúvidas em tempo real.</p></div></div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">Até quando vai a preparação?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">A turma acompanha o candidato até a prova. Como a data oficial ainda depende do edital, a preparação funciona por mensalidade.</p></div></div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">Por que a cobrança é mensal?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">Porque nosso trabalho acompanha a evolução do concurso. Conforme o cronograma avança, ajustamos conteúdos, cronograma e estratégias até a realização da prova.</p></div></div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">E se eu perder uma aula?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">Você poderá assistir à gravação e acompanhar normalmente o cronograma da turma.</p></div></div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">Existe suporte para dúvidas?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">Sim. A turma possui um grupo exclusivo no WhatsApp acompanhado por um mediador, além do espaço para dúvidas durante as aulas ao vivo.</p></div></div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">Haverá simulados?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">Sim. Os simulados serão aplicados conforme a evolução da turma, ajudando a medir o desempenho e ajustar a preparação.</p></div></div>
+      </div>
+
+      <div class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+        <button class="w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+          <span class="font-display font-bold text-lg">Preciso esperar o edital?</span>
+          <svg class="faq-icon w-5 h-5 text-green-600 flex-none transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><div><p class="px-6 pb-5 text-slate-600 leading-relaxed">Não. A preparação foi criada justamente para quem deseja chegar ao pós-edital já com uma base sólida e uma rotina consolidada.</p></div></div>
+      </div>
+    </div>
+
+    <div class="reveal mt-12 rounded-3xl bg-green-700 text-white p-8 lg:p-10 text-center">
+      <h3 class="font-display font-bold text-2xl lg:text-3xl max-w-2xl mx-auto">Se essas respostas fazem sentido, esta preparação é o próximo passo da sua jornada.</h3>
+      <a href="#grupo" class="btn-gold mt-8">Quero entrar no grupo oficial
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GRUPO (CTA final) ================= -->
+<section id="grupo" class="relative overflow-hidden py-24 lg:py-28 bg-ink text-white">
+  <div class="glow" style="width:600px;height:600px;background:#16a34a;opacity:.2;left:50%;top:-200px;transform:translateX(-50%);"></div>
+
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <span class="eyebrow on-dark justify-center">Último passo</span>
+      <h2 class="mt-4 font-display font-black text-5xl lg:text-6xl leading-[0.98]">Agora a decisão é sua.</h2>
+      <p class="mt-7 text-lg lg:text-xl text-slate-300 leading-relaxed">
+        Se você realmente pretende disputar uma vaga na PMSC, entre no grupo oficial e conheça todos os detalhes da preparação.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6 mt-16">
+      <div class="reveal bg-white/5 ring-1 ring-white/10 rounded-3xl p-8 lg:p-10">
+        <h3 class="font-display font-bold text-2xl lg:text-3xl">Dentro do grupo você terá acesso a:</h3>
+        <ul class="mt-7 space-y-4 text-slate-200">
+          <li class="flex gap-3"><span class="text-gold-400 mt-0.5">✓</span> Apresentação completa da metodologia.</li>
+          <li class="flex gap-3"><span class="text-gold-400 mt-0.5">✓</span> Explicação detalhada de como funciona a preparação.</li>
+          <li class="flex gap-3"><span class="text-gold-400 mt-0.5">✓</span> Informações sobre cronograma e início da turma.</li>
+          <li class="flex gap-3"><span class="text-gold-400 mt-0.5">✓</span> Convite para o webinar exclusivo.</li>
+          <li class="flex gap-3"><span class="text-gold-400 mt-0.5">✓</span> Condições especiais para quem estiver no grupo.</li>
+          <li class="flex gap-3"><span class="text-gold-400 mt-0.5">✓</span> Avisos importantes sobre a formação da turma.</li>
+        </ul>
+      </div>
+
+      <div class="reveal relative overflow-hidden bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-8 lg:p-10 flex flex-col justify-center">
+        <h3 class="font-display font-extrabold text-3xl lg:text-4xl leading-tight">O grupo é destinado a candidatos comprometidos com a preparação.</h3>
+        <p class="mt-6 text-green-50 text-lg leading-relaxed">
+          Nosso objetivo é reunir pessoas que realmente pretendem investir na própria aprovação e acompanhar uma preparação estruturada até a prova.
+        </p>
+        <!-- ⚠️ PAULO: troque o href abaixo pelo link real do convite do WhatsApp -->
+        <a href="https://chat.whatsapp.com/COLE-O-LINK-AQUI" target="_blank" rel="noopener" class="btn-ghost mt-9 justify-center text-lg !py-5">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+          Entrar no grupo oficial
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-ink text-slate-400 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <a href="#topo" class="font-display font-extrabold text-lg text-white">ALFACON <span class="text-gold-400">PRESENCIAL</span></a>
+    <p class="text-sm text-center">© <span id="year"></span> AlfaCon Presencial • Preparação para concursos policiais</p>
+  </div>
+</footer>
+
+<!-- ================= BARRA FIXA MOBILE ================= -->
+<div class="lg:hidden fixed bottom-0 left-0 w-full z-40 bg-white/95 backdrop-blur border-t border-black/10 px-4 py-3">
+  <a href="#grupo" class="btn-primary w-full justify-center">Entrar no grupo oficial
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+  </a>
+</div>
+
+<script>
+  // ano dinâmico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // menu mobile
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('hidden') === false;
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // accordion FAQ
+  document.querySelectorAll('.faq-item button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-item button').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // reveal no scroll
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  // contadores animados
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const dur = 1200; const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / dur, 1);
+      el.textContent = Math.floor(p * target);
+      if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window) {
+    const co = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); co.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.count').forEach(el => co.observe(el));
+  } else {
+    document.querySelectorAll('.count').forEach(el => el.textContent = el.dataset.target);
+  }
+</script>
 
 </body>
 </html>
