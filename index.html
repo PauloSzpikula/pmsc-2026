@@ -11,187 +11,211 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-body{
-    font-family:'Plus Jakarta Sans',sans-serif;
-    background:linear-gradient(180deg,#ffffff,#f8fafc);
-}
-.hero-glow{
-    position:absolute;
-    width:650px;
-    height:650px;
-    background:#f5d76e;
-    filter:blur(140px);
-    opacity:.18;
-    border-radius:9999px;
-    right:-120px;
-    top:40px;
-}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:linear-gradient(180deg,#fff,#f8fafc);}
+.hero-glow{position:absolute;width:650px;height:650px;background:#f5d76e;filter:blur(140px);opacity:.18;border-radius:9999px;right:-120px;top:40px;}
+.card{transition:.3s}
+.card:hover{transform:translateY(-6px)}
 </style>
 </head>
-
 <body class="text-slate-800">
 
 <header class="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50">
 <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
-
-<div class="font-extrabold text-xl">
-ALFACON <span class="text-yellow-500">PRESENCIAL</span>
-</div>
-
+<div class="font-extrabold text-xl">ALFACON <span class="text-yellow-500">PRESENCIAL</span></div>
 <nav class="hidden lg:flex gap-8 text-sm font-semibold">
-<a href="#problema" class="hover:text-yellow-600">O Problema</a>
-<a href="#metodo" class="hover:text-yellow-600">Método</a>
-<a href="#funciona" class="hover:text-yellow-600">Como Funciona</a>
-<a href="#conteudo" class="hover:text-yellow-600">Conteúdo</a>
-<a href="#faq" class="hover:text-yellow-600">FAQ</a>
+<a href="#problema">O Problema</a>
+<a href="#metodo">Método</a>
+<a href="#funciona">Como Funciona</a>
+<a href="#conteudo">Conteúdo</a>
+<a href="#faq">FAQ</a>
 </nav>
-
-<a href="#grupo" class="bg-green-600 hover:bg-green-700 transition text-white px-5 py-3 rounded-xl font-semibold">
-Entrar no Grupo
-</a>
-
+<a href="#grupo" class="bg-green-600 text-white px-5 py-3 rounded-xl font-semibold">Entrar no Grupo</a>
 </div>
 </header>
 
 <section class="relative min-h-screen flex items-center overflow-hidden">
-
 <div class="hero-glow"></div>
-
 <div class="max-w-7xl mx-auto px-8 pt-28 grid lg:grid-cols-2 gap-12 items-center">
-
 <div>
-
-<div class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-bold uppercase tracking-wider text-xs">
-Nova Turma • PMSC 2026
-</div>
-
-<h1 class="mt-8 text-5xl lg:text-7xl font-extrabold leading-tight">
-
-Sua aprovação
-<br>
-<span class="text-slate-400">
-não depende de sorte.
-</span>
-
-</h1>
-
-<h2 class="text-3xl lg:text-5xl font-extrabold mt-5 text-yellow-600">
-Depende do método.
-</h2>
-
-<p class="mt-8 text-xl text-slate-600 leading-9">
-
-Enquanto muitos candidatos estudam sem direção,
-nossos alunos seguem um método estruturado,
-focado no perfil da banca e acompanhado até a prova.
-
-</p>
-
-<div class="flex flex-wrap gap-4 mt-10">
-
-<a href="#metodo"
-class="bg-green-600 hover:bg-green-700 transition text-white px-8 py-4 rounded-xl font-semibold shadow-lg">
-
-Conhecer a preparação →
-
-</a>
-
-</div>
+<div class="inline-flex bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-bold uppercase text-xs">Nova Turma • PMSC 2026</div>
+<h1 class="mt-8 text-5xl lg:text-7xl font-extrabold leading-tight">Sua aprovação <br><span class="text-slate-400">não depende de sorte.</span></h1>
+<h2 class="text-3xl lg:text-5xl font-extrabold mt-5 text-yellow-600">Depende do método.</h2>
+<p class="mt-8 text-xl text-slate-600 leading-9">Enquanto muitos candidatos estudam sem direção, nossos alunos seguem um método estruturado, focado no perfil da banca e acompanhado até a prova.</p>
+<a href="#metodo" class="inline-block mt-10 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold">Conhecer a preparação →</a>
 
 <div class="grid grid-cols-2 gap-6 mt-14">
-
-<div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
-
-<p class="text-4xl font-black">
-+15
-</p>
-
-<p class="font-bold mt-2">
-anos
-</p>
-
-<p class="text-slate-500 mt-2 text-sm">
-preparando candidatos para concursos policiais.
-</p>
-
+<div class="bg-white rounded-2xl shadow-lg border p-6">
+<p class="text-4xl font-black">+15</p>
+<p class="font-bold mt-2">anos</p>
+<p class="text-slate-500 text-sm mt-2">preparando candidatos.</p>
 </div>
-
-<div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-6">
-
-<p class="text-4xl font-black">
-+75
-</p>
-
-<p class="font-bold mt-2">
-aprovados
-</p>
-
-<p class="text-slate-500 mt-2 text-sm">
-na Polícia Militar do Paraná.
-</p>
-
+<div class="bg-white rounded-2xl shadow-lg border p-6">
+<p class="text-4xl font-black">+75</p>
+<p class="font-bold mt-2">aprovados</p>
+<p class="text-slate-500 text-sm mt-2">na PMPR.</p>
 </div>
-
 </div>
-
 </div>
-
-<div class="relative">
-
-<img
-src="assets/images/hero.webp"
-alt="Policial Militar"
-class="w-full relative z-10">
-
-</div>
-
-</div>
-
-</section>
-
-<section id="problema" class="py-24 bg-slate-900 text-white">
-<div class="max-w-5xl mx-auto px-8 text-center">
-<h2 class="text-4xl font-extrabold">A maioria dos candidatos reprova antes mesmo da prova.</h2>
-<p class="mt-8 text-xl text-slate-300">Nesta seção vamos mostrar por que isso acontece e como nossa metodologia resolve esse problema.</p>
+<div><img src="assets/images/hero.webp" class="w-full"></div>
 </div>
 </section>
 
-<section id="metodo" class="py-24">
+<section id="problema" class="py-24">
 <div class="max-w-6xl mx-auto px-8">
-<h2 class="text-4xl font-extrabold">Método AlfaCon</h2>
-<p class="mt-6 text-xl text-slate-600">
-Esta seção será desenvolvida na próxima etapa.
+<div class="max-w-3xl">
+<span class="text-yellow-600 font-bold uppercase tracking-widest">O Problema</span>
+<h2 class="mt-3 text-4xl lg:text-5xl font-extrabold leading-tight">
+Você não precisa estudar mais.<br>
+<span class="text-slate-400">Precisa estudar da maneira certa.</span>
+</h2>
+<p class="mt-6 text-xl text-slate-600 leading-8">
+A reprovação raramente acontece por falta de esforço. Ela acontece porque muitos candidatos estudam sem método, sem rotina e sem uma estratégia clara.
 </p>
 </div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+
+<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+<div class="text-4xl">⏰</div>
+<h3 class="font-bold text-xl mt-5">Estuda quando sobra tempo</h3>
+<p class="text-slate-500 mt-3">Sem rotina, cada semana recomeça do zero.</p>
+</div>
+
+<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+<div class="text-4xl">📚</div>
+<h3 class="font-bold text-xl mt-5">Acumula materiais</h3>
+<p class="text-slate-500 mt-3">PDFs, vídeos e anotações sem um plano claro.</p>
+</div>
+
+<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+<div class="text-4xl">🎯</div>
+<h3 class="font-bold text-xl mt-5">Não conhece a banca</h3>
+<p class="text-slate-500 mt-3">Estuda muito, mas nem sempre o que realmente importa.</p>
+</div>
+
+<div class="card bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+<div class="text-4xl">📉</div>
+<h3 class="font-bold text-xl mt-5">Perde a constância</h3>
+<p class="text-slate-500 mt-3">Sem método, a motivação desaparece ao longo da preparação.</p>
+</div>
+
+</div>
+</div>
 </section>
 
-<section id="funciona" class="py-24 bg-slate-50">
-<div class="max-w-6xl mx-auto px-8">
-<h2 class="text-4xl font-extrabold">Como funciona a preparação</h2>
-<p class="mt-6 text-xl text-slate-600">
-Timeline da preparação será adicionada na próxima versão.
+<section class="bg-slate-900 py-20">
+<div class="max-w-5xl mx-auto text-center px-8">
+<h2 class="text-4xl font-extrabold text-white">
+Foi justamente para resolver esses problemas que criamos o Método AlfaCon.
+</h2>
+<p class="text-slate-300 text-xl mt-6">
+Uma preparação guiada, organizada e focada em levar você até a prova com estratégia.
 </p>
+<a href="#metodo" class="inline-block mt-10 bg-yellow-500 hover:bg-yellow-400 text-slate-900 px-8 py-4 rounded-xl font-bold">
+Conhecer o Método ↓
+</a>
 </div>
 </section>
 
-<section id="conteudo" class="py-24">
-<div class="max-w-6xl mx-auto px-8">
-<h2 class="text-4xl font-extrabold">Conteúdo da preparação</h2>
-</div>
-</section>
 
-<section id="faq" class="py-24 bg-slate-100">
-<div class="max-w-6xl mx-auto px-8">
-<h2 class="text-4xl font-extrabold">Perguntas Frequentes</h2>
-</div>
-</section>
+<!-- TRECHO PARA SUBSTITUIR A SEÇÃO #metodo NO index-v2.html -->
+<section id="metodo" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-8">
 
-<section id="grupo" class="py-28 bg-green-700 text-white text-center">
-<div class="max-w-4xl mx-auto px-8">
+    <div class="max-w-3xl">
+      <span class="text-yellow-600 font-bold uppercase tracking-widest">Método AlfaCon</span>
+
+      <h2 class="mt-3 text-4xl lg:text-5xl font-extrabold leading-tight">
+        Não entregamos apenas aulas.
+        <span class="text-slate-400">Entregamos direção.</span>
+      </h2>
+
+      <p class="mt-8 text-xl text-slate-600 leading-9">
+        Enquanto muitos candidatos estudam sem planejamento, nossa metodologia
+        organiza toda a sua jornada até a prova. Você sempre saberá o que estudar,
+        quando estudar e como evoluir.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-8 mt-20">
+
+      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
+        <div class="text-5xl">📄</div>
+        <h3 class="mt-6 text-2xl font-bold">Antes da aula</h3>
+        <ul class="mt-6 space-y-3 text-slate-600">
+          <li>• PDF disponibilizado antecipadamente</li>
+          <li>• Leitura orientada</li>
+          <li>• Chegue preparado para a aula</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
+        <div class="text-5xl">🎥</div>
+        <h3 class="mt-6 text-2xl font-bold">Durante a aula</h3>
+        <ul class="mt-6 space-y-3 text-slate-600">
+          <li>• Revisão objetiva da teoria</li>
+          <li>• Questões no padrão da banca</li>
+          <li>• Dúvidas ao vivo</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
+        <div class="text-5xl">📝</div>
+        <h3 class="mt-6 text-2xl font-bold">Depois da aula</h3>
+        <ul class="mt-6 space-y-3 text-slate-600">
+          <li>• Lista segmentada</li>
+          <li>• Atualização dos resumos</li>
+          <li>• Revisão dirigida</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-8 shadow-sm">
+        <div class="text-5xl">📈</div>
+        <h3 class="mt-6 text-2xl font-bold">Sua evolução</h3>
+        <ul class="mt-6 space-y-3 text-slate-600">
+          <li>• Mapas de calor</li>
+          <li>• Simulados</li>
+          <li>• Grupo com suporte</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="mt-20 bg-slate-900 rounded-3xl p-12 text-white">
+
+      <h3 class="text-3xl font-bold">
+        Você nunca ficará em dúvida sobre o que estudar.
+      </h3>
+
+      <p class="mt-6 text-slate-300 text-lg leading-8">
+        Nossa preparação já entrega uma sequência lógica de estudos.
+        Você acompanha a rotina da turma enquanto nós cuidamos do planejamento.
+      </p>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+
+        <div class="bg-slate-800 rounded-xl p-5">✓ Aulas ao vivo</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ Aulas gravadas</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ PDFs antecipados</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ Questões por assunto</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ Mapas de calor</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ Grupo exclusivo</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ Correção de redação</div>
+        <div class="bg-slate-800 rounded-xl p-5">✓ Simulados</div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<section id="funciona" class="py-24 bg-slate-50"><div class="max-w-6xl mx-auto px-8"><h2 class="text-4xl font-extrabold">Como funciona a preparação</h2></div></section>
+<section id="conteudo" class="py-24"><div class="max-w-6xl mx-auto px-8"><h2 class="text-4xl font-extrabold">Conteúdo</h2></div></section>
+<section id="faq" class="py-24 bg-slate-100"><div class="max-w-6xl mx-auto px-8"><h2 class="text-4xl font-extrabold">FAQ</h2></div></section>
+
+<section id="grupo" class="py-24 bg-green-700 text-white text-center">
 <h2 class="text-5xl font-extrabold">Pronto para conhecer a turma?</h2>
-<p class="mt-6 text-xl">Entre no grupo oficial e descubra todos os detalhes da preparação.</p>
-<a href="#" class="inline-block mt-10 bg-white text-green-700 font-bold px-10 py-5 rounded-xl">Entrar no Grupo</a>
-</div>
+<a class="inline-block mt-8 bg-white text-green-700 px-8 py-4 rounded-xl font-bold" href="#">Entrar no Grupo</a>
 </section>
 
 </body>
